@@ -11,8 +11,7 @@ public class RobberController : MonoBehaviour
 
     void Update() {
         //Making the character move with their animations 
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-        {
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) {
             playerCharacter.GetComponent<Animation>().Play("Run");
             horizontalMovement = Input.GetAxis("Horizontal") * Time.deltaTime * 150;
             verticalMovement = Input.GetAxis("Vertical") * Time.deltaTime * 8;
