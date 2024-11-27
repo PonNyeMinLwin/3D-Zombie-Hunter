@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: cf4a04be115f687499531379b71b38ad
   - enabled: 1
-    path: Assets/Scenes/SecondHouse.unity
+    path: Assets/Scenes/HouseExample.unity
     guid: 8a0c9968db266324bb9960bb77eadc6c
   - enabled: 1
     path: Assets/Scenes/LockpickMinigame.unity
     guid: 8eb55484989281243a4419d6cf956123
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: d4b0f5f7fb504b4408a3f603398ce0ce,
+    com.unity.input.settings: {fileID: 11400000, guid: 19a11a224bf164e43a29d0d8a77aebf6,
       type: 2}
