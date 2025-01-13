@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: cf4a04be115f687499531379b71b38ad
   - enabled: 1
-    path: Assets/Scenes/HouseExample.unity
+    path: Assets/Scenes/GameScene.unity
     guid: 8a0c9968db266324bb9960bb77eadc6c
   - enabled: 1
     path: Assets/Scenes/LockpickMinigame.unity
