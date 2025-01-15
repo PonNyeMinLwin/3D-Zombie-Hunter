@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     float minPivotAngle = -15;
 
     [Header("Camera Smoothness")]
-    public float cameraSmoothTime = 0.2f;
+    public float cameraSmoothTime = 0.5f;
 
     public void AllCameraMovements() {
         FollowTarget();

@@ -29,13 +29,31 @@
                     "id": "cd838d6f-67cb-4fae-9545-3d587076a11c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Turn",
                     "type": "Button",
                     "id": "d2b0aa2d-cd21-49ff-ab05-35288165ad1e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "990e0e70-50c0-4282-ab59-6d79dd751e61",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "cea9daf0-6e6b-404c-b454-de4265ea78d9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -113,7 +131,7 @@
                     "name": "",
                     "id": "b0b059a9-9d1d-4f6a-b389-719c17cbd7db",
                     "path": "<Keyboard>/leftShift",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
@@ -128,6 +146,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93524838-d982-4b71-b296-759c7734907f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "496714a2-498f-4a49-9c03-98b3a910a16b",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
