@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pistol
+  m_Controller: {fileID: 9100000, guid: 6590281406a69b94db894a9e0ead1c91, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 0eb0fc5f833c6a84e9c04f6bacb0ae98,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: e3077087ca3c3aa419e8280ea7c062ba,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 76a6771c543e63a49b1c6ece5f0b3c4a,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 711680e620db1fe47b6b57b542212ace,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 34a19761d277768488390160941b88d7,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 69be8f0a32c86914e89c4b8d149d5cb3,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 9f9abe900a0a74b48831d6d4fcb0aab3,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: f422028578828074bb951fb2edc8e387,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 31fab5d9061616946aec1bd390c99c1f,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 2e79effdb6968004a87f1b8e66014401,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: baf92cfecac4130409e3ca98f6d68b5b,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 30871df9489b26d4abc194a3044c2f4f,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 92d95081691d1b94db698a08efe67ac1,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 1bfee34a515257e4f8b0cf45a9c8d345,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 96319d500e9139f4c8a49ed9c18374f1,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: ba091fb353988fd4292f5ff9445e3bda,
+      type: 3}

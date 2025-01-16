@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Creates an asset in-game 
+[CreateAssetMenu(menuName = "Items/Weapon Item")]
 public class WeaponItems : Item
 {
     [Header("Weapon Animations")]

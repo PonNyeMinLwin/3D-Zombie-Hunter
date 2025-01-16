@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     PlayerController playerController;
 
     float horizontalDirection;
