@@ -9,6 +9,8 @@ public class PlayerWeaponManager : MonoBehaviour
 
     [Header("Current Equipment")]
     public WeaponItems weapon;
+    private RightHandIKTarget rightHandIK;
+    private LeftHandIKTarget leftHandIK;
 
     private void Awake() {
         animationController = GetComponent<AnimationController>();
@@ -30,6 +32,9 @@ public class PlayerWeaponManager : MonoBehaviour
         playerEquipmentSpawner.LoadWeaponModel(weapon);
 
         // Loading the weapon on the player's hand and changing relevant animations
-        animationController.animator.runtimeAnimatorController = weapon.weaponAnimator; 
+        animationController.animator.runtimeAnimatorController = weapon.weaponAnimator;
+        rightHandIK = playerEquipmentSpawner.currentWeaponModel.GetComponentInChildren<RightHandIKTarget>();
+        leftHandIK = playerEquipmentSpawner.currentWeaponModel.GetComponentInChildren<LeftHandIKTarget>();
+        animationController.AssignHandIK(rightHandIK, leftHandIK); 
     }
 }

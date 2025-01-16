@@ -324,6 +324,50 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3535008999821072845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787155509601400810}
+  - component: {fileID: 7614250460897421069}
+  m_Layer: 0
+  m_Name: LeftHandIK
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &787155509601400810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535008999821072845}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5220129, y: -0.1404777, z: -0.05450986, w: 0.839522}
+  m_LocalPosition: {x: -0.206, y: -0.156, z: -0.012}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3635015241967350313}
+  m_LocalEulerAnglesHint: {x: -63.1, y: -23.3, z: 7}
+--- !u!114 &7614250460897421069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535008999821072845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a82d9488bfbab84485987da53bb5862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3851347959024662072
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +451,50 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5434487173260236224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4468642090668891160}
+  - component: {fileID: 7338392857727996843}
+  m_Layer: 0
+  m_Name: RightHandIK
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4468642090668891160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5434487173260236224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.72537434, w: 0.6883546}
+  m_LocalPosition: {x: -0.229, y: -0.147, z: -0.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3635015241967350313}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -93}
+--- !u!114 &7338392857727996843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5434487173260236224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fc4ee0206f5024f8aabb88b5dc9e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7949937496634298826
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +525,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6942107116973145853}
+  - {fileID: 4468642090668891160}
+  - {fileID: 787155509601400810}
   m_Father: {fileID: 4340056225821011280}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &8967398951080855541

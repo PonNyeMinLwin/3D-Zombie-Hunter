@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class AnimationController : MonoBehaviour
 {
     public Animator animator;
-    PlayerController playerController;
+    private PlayerController playerController;
+    private PlayerManager playerManager;
 
-    float horizontalDirection;
-    float verticalDirection;
+    // According to the "Animations Rigging" package documentation 
+    public TwoBoneIKConstraint rightHandIK;
+    public TwoBoneIKConstraint leftHandIK;
+    
+    private RigBuilder rigBuilder;
+
+    private float horizontalDirection;
+    private float verticalDirection;
 
     private void Awake() {
         animator = GetComponent<Animator>();
+        rigBuilder = GetComponent<RigBuilder>();
         playerController = GetComponent<PlayerController>();
+        playerManager = GetComponent<PlayerManager>();
     }
 
     public void PlayAnimationWithoutRootMotions(string targetAnimation, bool isPerformingInput) {
@@ -48,6 +58,12 @@ public class AnimationController : MonoBehaviour
 
         animator.SetFloat("Horizontal", horizontalDirection, 0.1f, Time.deltaTime);
         animator.SetFloat("Vertical", verticalDirection, 0.1f, Time.deltaTime);
+    }
+
+    public void AssignHandIK(RightHandIKTarget rightTarget, LeftHandIKTarget leftTarget) {
+        rightHandIK.data.target = rightTarget.transform;
+        leftHandIK.data.target = leftTarget.transform;
+        rigBuilder.Build();
     }
 
     private void OnAnimatorMove() {
