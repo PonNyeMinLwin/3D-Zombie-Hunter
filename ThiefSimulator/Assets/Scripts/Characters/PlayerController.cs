@@ -32,17 +32,24 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ManageRotation() {
-        targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
-        playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        // Ensures the player only rotates when there is movement input present
-        if (inputManager.verticalMovementInput != 0 || inputManager.horizontalMovementInput != 0) {
+        if (playerManager.isAimingGun) {
+            targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
+            playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = playerRotation;
-        }
-
-        if (playerManager.isPerformingTurn) {
-            playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-            transform.rotation = playerRotation;
+        } 
+        else {
+            targetRotation = Quaternion.Euler(0, cameraHolderTransform.eulerAngles.y, 0);
+            playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            
+            // Ensures the player only rotates when there is movement input present
+            if (inputManager.verticalMovementInput != 0 || inputManager.horizontalMovementInput != 0) {
+                transform.rotation = playerRotation;
+            }
+            
+            if (playerManager.isPerformingTurn) {
+                playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                transform.rotation = playerRotation;
+            }
         }
     }
 }

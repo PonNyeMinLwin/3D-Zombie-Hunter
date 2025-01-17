@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     AnimationController animationController;
     Animator animator;
     PlayerManager playerManager;
+    PlayerUIManager playerUIManager;
 
     [Header("Player Movement")]
     public float verticalMovementInput;
@@ -19,14 +20,16 @@ public class InputManager : MonoBehaviour
     public float horizontalCameraInput;
     private Vector2 cameraInput;
 
-    [Header("Extra Movement Settings")]
-    public bool isRunning;
+    [Header("Inputted Actions")]
+    public bool runInput;
     public bool turnInput;
+    public bool aimInput;
 
     private void Awake() {
         animationController = GetComponent<AnimationController>();
         animator = GetComponent<Animator>();
         playerManager = GetComponent<PlayerManager>();
+        playerUIManager = FindObjectOfType<PlayerUIManager>();
     }
 
     private void OnEnable() {
@@ -38,11 +41,15 @@ public class InputManager : MonoBehaviour
             inputControls.Player.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
 
             // Sees if Shift Key is pressed
-            inputControls.Player.Sprint.performed += i => isRunning = true;
-            inputControls.Player.Sprint.canceled += i => isRunning = false;
+            inputControls.Player.Sprint.performed += i => runInput = true;
+            inputControls.Player.Sprint.canceled += i => runInput = false;
 
             // Sees if Q Key is pressed
             inputControls.Player.Turn.performed += i => turnInput = true;
+
+            // Sees if right mouse button is pressed
+            inputControls.PlayerCombat.Aim.performed += i => aimInput = true;
+            inputControls.PlayerCombat.Aim.canceled += i => aimInput = false;
         }
 
         inputControls.Enable();
@@ -56,21 +63,22 @@ public class InputManager : MonoBehaviour
         ManageMovementInput();
         ManageCameraInput();
         ManageTurnInput();
+        ManageAimInput();
     }
 
     private void ManageMovementInput() {
         horizontalMovementInput = movementInput.x;
         verticalMovementInput = movementInput.y;
-        animationController.ManageAnimatorFloatValues(horizontalMovementInput, verticalMovementInput, isRunning);
+        animationController.ManageAnimatorFloatValues(horizontalMovementInput, verticalMovementInput, runInput);
 
         // Temporary 
-        if (verticalMovementInput != 0 || horizontalMovementInput != 0) {
-            animationController.rightHandIK.weight = 0;
-            animationController.leftHandIK.weight = 0;
-        } else {
-            animationController.rightHandIK.weight = 1;
-            animationController.leftHandIK.weight = 1;
-        }
+        //if (verticalMovementInput != 0 || horizontalMovementInput != 0) {
+            //animationController.rightHandIK.weight = 0;
+            //animationController.leftHandIK.weight = 0;
+        //} else {
+            //animationController.rightHandIK.weight = 1;
+            //animationController.leftHandIK.weight = 1;
+        //}
     }
 
     private void ManageCameraInput() {
@@ -87,5 +95,25 @@ public class InputManager : MonoBehaviour
             animator.SetBool("isTurning", true);
             animationController.PlayAnimationWithoutRootMotions("Turn", true);
         }
+    }
+
+    private void ManageAimInput() {
+        // Player cannot aim while moving
+        if (verticalMovementInput != 0 || horizontalMovementInput != 0) {
+            aimInput = false;
+            animator.SetBool("isAimingGun", false);
+            playerUIManager.crosshair.SetActive(false);
+            return;
+        }
+
+        if (aimInput) {
+            animator.SetBool("isAimingGun", true);
+            playerUIManager.crosshair.SetActive(true);
+        } else {
+            animator.SetBool("isAimingGun", false);
+            playerUIManager.crosshair.SetActive(false);
+        }
+
+        animationController.UpdateAimConstraints();
     }
 }

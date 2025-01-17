@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    InputManager inputManager;
-    CameraController cameraController;
-    PlayerController playerController;
-    Animator animator;
+    private InputManager inputManager;
+    private CameraController cameraController;
+    private PlayerController playerController;
+    private Animator animator;
 
     [Header("Player Actions")]
+    public bool disableRootMotion;
     public bool isPerformingInput;
     public bool isPerformingTurn;
+    public bool isAimingGun;
 
     private void Awake() {
         inputManager = GetComponent<InputManager>();
@@ -23,8 +25,10 @@ public class PlayerManager : MonoBehaviour
     private void Update() {
         inputManager.ManageAllInputs();
 
+        disableRootMotion = animator.GetBool("disableRootMotion");
         isPerformingInput = animator.GetBool("isPerformingInput");
         isPerformingTurn = animator.GetBool("isTurning");
+        isAimingGun = animator.GetBool("isAimingGun");
     }
 
     private void FixedUpdate() {

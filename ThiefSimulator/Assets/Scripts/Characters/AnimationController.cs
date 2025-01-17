@@ -9,9 +9,17 @@ public class AnimationController : MonoBehaviour
     private PlayerController playerController;
     private PlayerManager playerManager;
 
+    [Header("Hand IK Constraints")]
     // According to the "Animations Rigging" package documentation 
+    // These constraints allow the character model to properly hold the pistol 
     public TwoBoneIKConstraint rightHandIK;
     public TwoBoneIKConstraint leftHandIK;
+
+    [Header("Aiming Multi-Constraints")]
+    // These constraints turn the character toward the downsight (crosshair)
+    public MultiAimConstraint firstSpineAim;
+    public MultiAimConstraint secondSpineAim;
+    public MultiAimConstraint headAim;
     
     private RigBuilder rigBuilder;
 
@@ -64,6 +72,19 @@ public class AnimationController : MonoBehaviour
         rightHandIK.data.target = rightTarget.transform;
         leftHandIK.data.target = leftTarget.transform;
         rigBuilder.Build();
+    }
+
+    public void UpdateAimConstraints() {
+        // While aiming, the player will turn to the crosshair - but when idle, the camera will be back to normal
+        if (playerManager.isAimingGun) {
+            firstSpineAim.weight = 0.3f;
+            secondSpineAim.weight = 0.3f;
+            headAim.weight = 0.7f;
+        } else {
+            firstSpineAim.weight = 0f;
+            secondSpineAim.weight = 0f;
+            headAim.weight = 0f;
+        }
     }
 
     private void OnAnimatorMove() {
