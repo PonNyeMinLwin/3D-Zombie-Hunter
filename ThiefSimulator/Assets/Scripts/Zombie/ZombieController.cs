@@ -6,8 +6,12 @@ public class ZombieController : MonoBehaviour
 {
     // Zombie starts on IdleState 
     public IdleState startingState;
-    // Current state of the zombie
-    private State currentState;
+
+    [Header("Current State")]
+    [SerializeField] private State currentState;
+
+    [Header("Current Target")]
+    public PlayerManager currentTarget;
 
     private void Awake() {
         currentState = startingState;
@@ -25,7 +29,7 @@ public class ZombieController : MonoBehaviour
         if (currentState != null) {
             // Run logic based on which state the zombie is currently in 
             // Also runs a check and if met - switch stages
-            nextState = currentState.StateSwitchCheck();
+            nextState = currentState.StateSwitchCheck(this);
             if (nextState != null) {
                 currentState = nextState;
             }
