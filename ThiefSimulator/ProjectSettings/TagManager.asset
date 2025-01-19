@@ -13,10 +13,10 @@ TagManager:
   - UI
   - Interactables
   - Player
-  - 
-  - 
-  - 
-  - 
+  - Zombie
+  - Head Hitbox
+  - Torso Hitbox
+  - Normal Hitbox
   - 
   - 
   - 

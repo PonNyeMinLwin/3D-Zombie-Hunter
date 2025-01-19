@@ -9,6 +9,11 @@ public class IdleState : State
     // Character (zombie) will detect objects with this layer
     [Header("Detection Layer")]
     [SerializeField] private LayerMask detectionLayer;
+    
+    // Added variable since raycast cannot detect properly when starting on the floor 
+    [Header("Character Model Eye Level")]
+    [SerializeField] private float characterModelHeight = 1.5f;
+    [SerializeField] private LayerMask ignoreLayerForDetection;
 
     // How far away the character (zombie) must be to detect
     [Header("Detection Radius")]
@@ -55,15 +60,13 @@ public class IdleState : State
                     Debug.Log("The player is in my POV! I can sense him.");
 
                     RaycastHit hit;
-                    // Added variable since raycast cannot detect properly when starting on the floor 
-                    float characterModelHeight = 2f;
                     Vector3 playerStartLocation = new Vector3(player.transform.position.x, characterModelHeight, player.transform.position.z);
                     Vector3 zombieStartLocation = new Vector3(transform.position.x, characterModelHeight, transform.position.z);
 
                     Debug.DrawLine(playerStartLocation, zombieStartLocation, Color.yellow);
 
                     // Check one last time for objects between player and zombie locations that are blocking the POVs
-                    if (Physics.Linecast(playerStartLocation, zombieStartLocation, out hit)) {
+                    if (Physics.Linecast(playerStartLocation, zombieStartLocation, out hit, ignoreLayerForDetection)) {
                         // Cannot find target - there is an object in between 
                         Debug.Log("There is an object in the way.");
                     } else {

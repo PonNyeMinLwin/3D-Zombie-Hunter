@@ -14,6 +14,12 @@ public class WeaponAnimatorManager : MonoBehaviour
     public Transform pistolBarrelSmokeTransform; // Location of the barrel smoke
     public Transform pistolEmptyBulletTransform; // Location of the empty bullet casing ejection 
 
+    [Header("Weapon Hitbox Layers")]
+    public LayerMask hitboxLayers;
+
+    [Header("Weapon Bullet Stats")]
+    public float bulletRange = 300f;
+
     private void Awake() {
         weaponAnimator = GetComponentInChildren<Animator>();
     }
@@ -29,10 +35,26 @@ public class WeaponAnimatorManager : MonoBehaviour
         
         barrelSmoke.transform.parent = null;
         bullet.transform.parent = null;
-        // Actually shoots at intended target (using Raycast?) - need to find documentation again
+        // Actually shoots at intended target using Raycast
         RaycastHit hit;
-        if (Physics.Raycast(cameraController.cameraObject.transform.position, cameraController.cameraObject.transform.forward, out hit)) {
-            Debug.Log(hit.transform.gameObject.name);
+
+        if (Physics.Raycast(cameraController.cameraObject.transform.position, cameraController.cameraObject.transform.forward, out hit, bulletRange, hitboxLayers)) {
+            Debug.Log(hit.collider.gameObject.layer);
+
+            ZombieHitboxManager zombie = hit.collider.gameObject.GetComponentInParent<ZombieHitboxManager>();
+
+            if (zombie != null) {
+                if (hit.collider.gameObject.layer == 9) {
+                    zombie.DamageZombieHeadHitbox();
+                }
+                else if (hit.collider.gameObject.layer == 10) {
+                    zombie.DamageZombieTorsoHitbox();
+                } 
+                else if (hit.collider.gameObject.layer == 11) {
+                    zombie.DamageZombieNormalHitbox();
+                }
+            }
+
         }
     }
 }

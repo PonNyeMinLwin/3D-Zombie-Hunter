@@ -280,6 +280,10 @@ MonoBehaviour:
     type: 3}
   pistolBarrelSmokeTransform: {fileID: 4583131734305304650}
   pistolEmptyBulletTransform: {fileID: 800820058301824976}
+  hitboxLayers:
+    serializedVersion: 2
+    m_Bits: 3585
+  bulletRange: 300
 --- !u!1 &1993732862887970460
 GameObject:
   m_ObjectHideFlags: 0

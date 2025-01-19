@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120e9ac8c426ed9439fbd70afdbd0cc2, type: 3}
+  m_Name: ZombieRightSwipe
+  m_EditorClassIdentifier: 
+  attackAnimation: ZombieRightSwipeAttack
+  attackCoolDownTimer: 5
+  maxAttackDirection: 20
+  minAttackDirection: -20
+  maxAttackDistance: 1
+  minAttackDistance: 2
