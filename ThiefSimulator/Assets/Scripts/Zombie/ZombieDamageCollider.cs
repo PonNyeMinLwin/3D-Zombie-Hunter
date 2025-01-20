@@ -20,8 +20,6 @@ public class ZombieDamageCollider : MonoBehaviour
             PlayerManager player = other.GetComponent<PlayerManager>();
 
             if (player != null) {
-                // After playtesting, to make the game easier, player can't die while doing action
-                // Or smoother death
                 if (!player.isPerformingInput) {
                     // Play the Player's "Get Hit" animation 
                     player.animationController.PlayAnimationWithRootMotions("Hit", true);

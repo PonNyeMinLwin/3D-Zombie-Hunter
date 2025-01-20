@@ -18,4 +18,11 @@ public class PlayerUIManager : MonoBehaviour
     [Header("Ammo Display")]
     public TextMeshProUGUI gunAmmoCountText;
     public TextMeshProUGUI reloadAmmoCountText;
+
+    [Header("Rounds Survived Display")]
+    public TextMeshProUGUI roundsSurvivedCountText;
+
+    [Header("Kills Counter Display")]
+    public TextMeshProUGUI currentKillsCountText;
+    public TextMeshProUGUI zombiesLeftInRoundCountText;
 }

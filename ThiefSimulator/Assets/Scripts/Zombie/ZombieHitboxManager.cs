@@ -35,4 +35,7 @@ public class ZombieHitboxManager : MonoBehaviour
         Debug.Log("Hit normal hitbox!");
         zombieController.zombieHealthManager.DealNormalHitboxDamage(damage);
     }
+
+
+    
 }

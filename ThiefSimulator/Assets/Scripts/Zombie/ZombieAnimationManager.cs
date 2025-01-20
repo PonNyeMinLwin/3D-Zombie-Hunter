@@ -22,4 +22,8 @@ public class ZombieAnimationManager : MonoBehaviour
         zombieController.isPerformingAction = true;
         zombieController.animator.CrossFade(deathAnimation, 0.2f);
     }
+    
+    public void ResetPerformingAction() {
+        zombieController.isPerformingAction = false;
+    }
 }
