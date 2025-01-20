@@ -4,26 +4,35 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    private InputManager inputManager;
-    private CameraController cameraController;
-    private PlayerController playerController;
     private Animator animator;
-    private PlayerWeaponManager playerWeaponManager;
-    private AnimationController animationController;
+    private InputManager inputManager;
+
+    public AnimationController animationController;
+    public CameraController cameraController;
+    public PlayerController playerController;
+    public PlayerUIManager playerUIManager;
+    public PlayerWeaponManager playerWeaponManager;
+    public InventoryManager inventoryManager;
+    public PlayerHealthManager playerHealthManager;
+    
 
     [Header("Player Actions")]
     public bool disableRootMotion;
     public bool isPerformingInput;
     public bool isPerformingTurn;
     public bool isAimingGun;
+    public bool isDead;
 
     private void Awake() {
         inputManager = GetComponent<InputManager>();
-        cameraController = FindObjectOfType<CameraController>();
         playerController = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
         animationController = GetComponent<AnimationController>();
         playerWeaponManager = GetComponent<PlayerWeaponManager>();
+        cameraController = FindObjectOfType<CameraController>();
+        playerUIManager = FindObjectOfType<PlayerUIManager>();
+        inventoryManager = GetComponent<InventoryManager>();
+        playerHealthManager = GetComponent<PlayerHealthManager>();
     }
 
     private void Update() {
@@ -33,6 +42,7 @@ public class PlayerManager : MonoBehaviour
         isPerformingInput = animator.GetBool("isPerformingInput");
         isPerformingTurn = animator.GetBool("isTurning");
         isAimingGun = animator.GetBool("isAimingGun");
+        animator.SetBool("isDead", isDead);
     }
 
     private void FixedUpdate() {
@@ -45,11 +55,14 @@ public class PlayerManager : MonoBehaviour
 
     public void UseCurrentWeapon() {
         // For future development, this function can be updated to use different kinds of weapons (like knives or grenades)
-        //if (isPerformingInput) {
-            //return;
-        //}
-
-        animationController.PlayAnimationWithoutRootMotions("Shoot", true);
-        playerWeaponManager.weaponAnimator.ShootWeapon(cameraController);
+        // If there is ammo in gun, shoot weapon and minus ammo count (also from UI)
+        if (playerWeaponManager.weapon.ammoLeftInWeapon > 0) {
+            playerWeaponManager.weapon.ammoLeftInWeapon = playerWeaponManager.weapon.ammoLeftInWeapon - 1;
+            playerUIManager.gunAmmoCountText.text = playerWeaponManager.weapon.ammoLeftInWeapon.ToString();
+            animationController.PlayAnimationWithoutRootMotions("Shoot", true);
+            playerWeaponManager.weaponAnimator.ShootWeapon(cameraController);
+        } else {
+            Debug.Log("Out of ammo! R to reload.");
+        }
     }
 }

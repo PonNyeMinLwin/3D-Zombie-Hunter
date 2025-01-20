@@ -34,9 +34,17 @@ public class AnimationController : MonoBehaviour
     }
 
     public void PlayAnimationWithoutRootMotions(string targetAnimation, bool isPerformingInput) {
-        animator.SetBool("isPerformingInput", isPerformingInput);
         animator.applyRootMotion = false;
+        animator.SetBool("isPerformingInput", isPerformingInput);
+        animator.SetBool("disableRootMotion", true);
+        // This line makes my camera move while shooting and make a weird effect - will find fix
         //animator.CrossFade(targetAnimation, 0.2f);
+    }
+
+    public void PlayAnimationWithRootMotions(string targetAnimation, bool isPerformingInput) {
+        animator.SetBool("isPerformingInput", isPerformingInput);
+        animator.SetBool("disableRootMotion", true);
+        animator.CrossFade(targetAnimation, 0.2f);
     }
 
     public void ManageAnimatorFloatValues(float horizontalMovement, float verticalMovement, bool isRunning) {

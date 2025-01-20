@@ -20,11 +20,12 @@ public class InputManager : MonoBehaviour
     public float horizontalCameraInput;
     private Vector2 cameraInput;
 
-    [Header("Inputted Actions")]
+    [Header("Input Bool Flags")]
     public bool runInput;
     public bool turnInput;
     public bool aimInput;
     public bool shootInput;
+    public bool reloadInput;
 
     private void Awake() {
         animationController = GetComponent<AnimationController>();
@@ -55,6 +56,10 @@ public class InputManager : MonoBehaviour
             // Sees if left mouse button is pressed
             inputControls.PlayerCombat.Shoot.performed += i => shootInput = true;
             inputControls.PlayerCombat.Shoot.canceled += i => shootInput = false;
+
+            // Sees if R Key is pressed
+            inputControls.PlayerCombat.Reload.performed += i => reloadInput = true;
+            inputControls.PlayerCombat.Reload.canceled += i => reloadInput = false;
         }
 
         inputControls.Enable();
@@ -70,6 +75,7 @@ public class InputManager : MonoBehaviour
         ManageTurnInput();
         ManageAimInput();
         ManageShootInput();
+        ManageReloadInput();
     }
 
     private void ManageMovementInput() {
@@ -98,6 +104,7 @@ public class InputManager : MonoBehaviour
         }
 
         if (turnInput) {
+            turnInput = false;
             animator.SetBool("isTurning", true);
             animationController.PlayAnimationWithoutRootMotions("Turn", true);
         }
@@ -130,6 +137,56 @@ public class InputManager : MonoBehaviour
             shootInput = false;
             Debug.Log("Gun shot!");
             playerManager.UseCurrentWeapon();
+        }
+    }
+
+    private void ManageReloadInput() {
+        // Reload can't interrupt other animations
+        //if (playerManager.isPerformingInput) 
+            //return;
+        
+
+        if (reloadInput) {
+            reloadInput = false;
+
+            if (playerManager.playerWeaponManager.weapon.ammoLeftInWeapon == playerManager.playerWeaponManager.weapon.maxAmmoCapacity) {
+                Debug.Log("Ammo already full. Cannot reload!");
+                return;
+            }
+
+            // Check if there is ammo in our player reloadable inventory 
+            if (playerManager.inventoryManager.currentAmmoInReloadableInventory != null) {
+                int ammoNeeded = playerManager.playerWeaponManager.weapon.maxAmmoCapacity - playerManager.playerWeaponManager.weapon.ammoLeftInWeapon;
+                int spareAmmo = playerManager.inventoryManager.currentAmmoInReloadableInventory.currentAmmoInBox;
+                
+                // If there are no reserve ammo, don't play reload animation
+                if (playerManager.inventoryManager.currentAmmoInReloadableInventory.currentAmmoInBox == 0)
+                    return;
+
+                int ammoAmountTakenFromInventory;
+                ammoAmountTakenFromInventory = playerManager.playerWeaponManager.weapon.maxAmmoCapacity - playerManager.playerWeaponManager.weapon.ammoLeftInWeapon;
+                // e.g. 10 bullets are left in pistol and player reloads - ammo in reloadable inventory (-2), ammo in gun (+2)
+
+                // If player have reloadable ammo in inventory, we take it from there
+                if (spareAmmo >= ammoNeeded) {
+                    playerManager.playerWeaponManager.weapon.ammoLeftInWeapon += ammoNeeded;
+                    playerManager.inventoryManager.currentAmmoInReloadableInventory.currentAmmoInBox -= ammoNeeded;
+                } 
+                // If player don't have enough reloadable ammo, take everything and put it in current weapon's magazine 
+                else { 
+                    playerManager.playerWeaponManager.weapon.ammoLeftInWeapon += spareAmmo;
+                    playerManager.inventoryManager.currentAmmoInReloadableInventory.currentAmmoInBox = 0;
+                }
+
+                // Plays reload animation 
+                playerManager.animationController.PlayAnimationWithRootMotions("Reload", true);
+
+                // Takes the ammo from player's reserves to currently holding weapon's ammo count (in UI)
+                playerManager.playerUIManager.gunAmmoCountText.text = playerManager.playerWeaponManager.weapon.ammoLeftInWeapon.ToString();
+                playerManager.inventoryManager.UpdateSpareAmmoUI();
+            } else {
+                Debug.Log("No spare inventory to reload!");
+            }
         }
     }
 }

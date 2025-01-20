@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponAnimatorManager : MonoBehaviour
 {
+    private PlayerManager player;
     private Animator weaponAnimator;
 
     [Header("Weapon FXs")]
@@ -22,6 +23,7 @@ public class WeaponAnimatorManager : MonoBehaviour
 
     private void Awake() {
         weaponAnimator = GetComponentInChildren<Animator>();
+        player = GetComponentInParent<PlayerManager>();
     }
 
     public void ShootWeapon(CameraController cameraController) {
@@ -45,13 +47,13 @@ public class WeaponAnimatorManager : MonoBehaviour
 
             if (zombie != null) {
                 if (hit.collider.gameObject.layer == 9) {
-                    zombie.DamageZombieHeadHitbox();
+                    zombie.DamageZombieHeadHitbox(player.playerWeaponManager.weapon.damage);
                 }
                 else if (hit.collider.gameObject.layer == 10) {
-                    zombie.DamageZombieTorsoHitbox();
+                    zombie.DamageZombieTorsoHitbox(player.playerWeaponManager.weapon.damage);
                 } 
                 else if (hit.collider.gameObject.layer == 11) {
-                    zombie.DamageZombieNormalHitbox();
+                    zombie.DamageZombieNormalHitbox(player.playerWeaponManager.weapon.damage);
                 }
             }
 
