@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerUIManager : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class PlayerUIManager : MonoBehaviour
     // All UI related settings for chests and main menu will be coded elsewhere 
 
     // Crosshair done
+
+    [Header("In-Game UI Display")]
+    public GameObject inGameDisplay;
+
+    [Header("End Game Display")]
+    public GameObject endGameDisplay;
     
     [Header("Crosshair")]
     public GameObject crosshair;
@@ -25,4 +32,16 @@ public class PlayerUIManager : MonoBehaviour
     [Header("Kills Counter Display")]
     public TextMeshProUGUI currentKillsCountText;
     public TextMeshProUGUI zombiesLeftInRoundCountText;
+    
+    [Header("End Game Display Components")]
+    public TextMeshProUGUI totalKillsText;
+    public TextMeshProUGUI totalRoundsText;
+    
+    private void Awake() {
+        inGameDisplay.SetActive(true);
+    }
+
+    public void ReloadScene() {
+        SceneManager.LoadScene(1);
+    }
 }
