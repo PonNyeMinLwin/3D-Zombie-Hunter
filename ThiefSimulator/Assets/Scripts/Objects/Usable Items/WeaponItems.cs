@@ -16,4 +16,8 @@ public class WeaponItems : Item
     [Header("Ammo Stats")]
     public int ammoLeftInWeapon = 0;
     public int maxAmmoCapacity = 12;
+
+    [Header("Weapon Sound Effects")]
+    public AudioClip weaponShotAudio;
 }
+

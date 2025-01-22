@@ -18,6 +18,6 @@ public class ZombieAttackTypeManager : ScriptableObject
     // AttackDistance references the distance necessary to perform a specific attack animation 
     public float maxAttackDirection = 20f;
     public float minAttackDirection = -20f; 
-    public float maxAttackDistance = 1f;
-    public float minAttackDistance = 2f;
+    public float maxAttackDistance;
+    public float minAttackDistance;
 }

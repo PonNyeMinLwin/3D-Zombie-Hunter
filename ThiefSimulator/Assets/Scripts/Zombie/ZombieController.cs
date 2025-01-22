@@ -37,9 +37,13 @@ public class ZombieController : MonoBehaviour
     public float rotationSpeed = 5;
 
     [Header("Attack Stats")]
-    public float minAttackDistance = 1; // Putting my attack type with the shortest distance as 1
-    public float maxAttackDistance = 3.5f; // Putting my attack type with the longest distance as 3.5
+    public float minAttackDistance = 10; 
+    public float maxAttackDistance = 10; 
     public float attackCoolDown;
+
+    [Header("Zombie Audio")]
+    public AudioSource zombieAudioSource; 
+    public AudioClip zombieNoiseClip; 
 
     private void Awake() {
         currentState = startingState;
@@ -48,9 +52,20 @@ public class ZombieController : MonoBehaviour
         zombieRigidbody = GetComponent<Rigidbody>();
         zombieAnimationManager = GetComponent<ZombieAnimationManager>();
         zombieHealthManager = GetComponent<ZombieHealthManager>();
+
+        if (zombieAudioSource == null) {
+            zombieAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+        zombieAudioSource.clip = zombieNoiseClip;
+        zombieAudioSource.loop = true;
     }
 
-    // Temporary
+    private void Start() {
+        if (zombieNoiseClip != null && !zombieAudioSource.isPlaying && !isDead) {
+            zombieAudioSource.Play(); 
+        }
+    }
+
     private void FixedUpdate() {
         if (!isDead) {
             ManageStateMachine();
@@ -61,7 +76,7 @@ public class ZombieController : MonoBehaviour
         zombieNavMeshAgent.transform.localPosition = Vector3.zero;
 
         if (attackCoolDown > 0) {
-            attackCoolDown = attackCoolDown - Time.deltaTime;
+            attackCoolDown -= Time.deltaTime;
         }
 
         // Checking the distance between character (zombie) and player and going to AttackState
@@ -72,9 +87,13 @@ public class ZombieController : MonoBehaviour
             // Getting the current distance from player as a float value
             distanceFromCurrentTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
         }
+
+        // Stop zombie audio if the zombie is dead
+        if (isDead && zombieAudioSource.isPlaying) {
+            zombieAudioSource.Stop();
+        }
     }
 
-    // Temporary
     private void ManageStateMachine() {
         State nextState;
 

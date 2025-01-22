@@ -7,11 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerUIManager : MonoBehaviour
 {
-    // This will control all Canvas displays for the player
+    // This class holds Canvas displays for the player
     // This includes health, ammo count, rounds survived, and enemies left/killed 
-    // All UI related settings for chests and main menu will be coded elsewhere 
-
-    // Crosshair done
 
     [Header("In-Game UI Display")]
     public GameObject inGameDisplay;

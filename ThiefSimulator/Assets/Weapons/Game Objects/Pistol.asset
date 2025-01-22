@@ -17,5 +17,6 @@ MonoBehaviour:
     type: 3}
   weaponAnimator: {fileID: 22100000, guid: 50f512cfaf574954d9e5e2063ea06a3e, type: 2}
   damage: 1
-  ammoLeftInWeapon: 0
+  ammoLeftInWeapon: 12
   maxAmmoCapacity: 12
+  weaponShotAudio: {fileID: 8300000, guid: 51fceb8f9f7d95847b91cce31ce6875a, type: 3}

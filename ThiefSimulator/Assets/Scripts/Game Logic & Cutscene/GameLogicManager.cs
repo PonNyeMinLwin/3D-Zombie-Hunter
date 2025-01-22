@@ -23,6 +23,12 @@ public class GameLogicManager : MonoBehaviour
     public int totalKills;
     public int amountOfKillsThisRound;
 
+    [Header("Background Music")]
+    public AudioSource backgroundMusicSource; 
+    public AudioClip backgroundMusicClip; 
+
+    [Header("Player Reference")]
+    public PlayerManager playerManager;
 
     private void Start() {
         // Initializes the first round
@@ -31,6 +37,11 @@ public class GameLogicManager : MonoBehaviour
         totalKills = 0;
         UpdatePlayerUI();
         NextRound(roundsSurvived);
+
+        // Configure and start playing background music
+        backgroundMusicSource.clip = backgroundMusicClip;
+        backgroundMusicSource.loop = true; 
+        backgroundMusicSource.Play();
     }
 
     private void Update() {
@@ -41,21 +52,22 @@ public class GameLogicManager : MonoBehaviour
             UpdatePlayerUI();
             NextRound(roundsSurvived);
         }
+
+        // Stop music if the player is dead
+        if (playerManager.isDead) {
+            backgroundMusicSource.Stop();
+        }
     }
 
-    // (Temporary function) - to instantiate one mob in one of any possible spawn locations per round - eg. R1 = 1 mob, R2 = 2 mob
-    // (Future function) - make a script to note down how many mobs should appear every round 
-    // (Future function) - make a function to choose between different types of enemies - eg. zombie, vampire 
     public void NextRound(int roundsSurvived) {
         for (var x = 0; x < roundsSurvived; x++) {
             // Take a random spawn point from the different mob spawners
             GameObject spawnPoint = mobSpawnPoints[Random.Range(0, mobSpawnPoints.Length)];
             
             // Instantiates an enemy (zombie) on the position of the mob spawner
-            // Get the ZombieHealthManager script from this cloned zombie (temporary hotfix)
+            // Get the ZombieHealthManager script from this cloned zombie
             GameObject spawnedZombie = Instantiate(enemyPrefab, spawnPoint.transform.position, Quaternion.identity);
-            // Makes it so that we don't need to properly reference it - we just get the clone's script for a while
-            spawnedZombie.GetComponent<ZombieHealthManager>().gameLogicManager = GetComponent<GameLogicManager>();
+            spawnedZombie.GetComponent<ZombieHealthManager>().gameLogicManager = this;
             enemiesAliveCurrently++;
         }
         // Updates UI
@@ -86,8 +98,7 @@ public class GameLogicManager : MonoBehaviour
             if (playerUIManager.zombiesLeftInRoundCountText != null) {
                 playerUIManager.zombiesLeftInRoundCountText.text = enemiesAliveCurrently.ToString();
             }
-        } else {
-            Debug.Log("PlayerUIManager not accessed by GameLogicManager");
         }
     }
 }
+

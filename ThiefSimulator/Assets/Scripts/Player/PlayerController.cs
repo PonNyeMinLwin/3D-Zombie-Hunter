@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 8;
 
     [Header("Jump Settings")]
-    public float jumpHeight = 5f; // Height of the jump
-    public bool isJumping = false; // Whether the player is currently jumping
-    public bool isComingDown = false; // Whether the player is descending
+    public float jumpHeight = 5f; 
+    public bool isJumping = false; 
+    public bool isComingDown = false; 
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public void ManageAllMovement()
     {
         ManageRotation();
-        HandleJump(); // Handle jump within the movement logic
+        ManageJump(); 
     }
 
     private void ManageRotation()
@@ -60,20 +60,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleJump()
+    private void ManageJump()
     {
         if (Input.GetKey(KeyCode.Space))
         {
             if (!isJumping)
             {
                 isJumping = true;
-                // Trigger jump animation
+                // Play jump animation
                 playerManager.animationController.animator.Play("Jump");
                 StartCoroutine(JumpSequence());
             }
         }
 
-        // Move player up or down during jump
         if (isJumping)
         {
             if (!isComingDown)
@@ -89,16 +88,15 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator JumpSequence()
     {
-        // Simulate ascending
+        // Jumping
         yield return new WaitForSeconds(0.45f);
         isComingDown = true;
 
-        // Simulate descending
+        // Falling
         yield return new WaitForSeconds(0.45f);
         isJumping = false;
         isComingDown = false;
 
-        // Return to standard movement by playing the "Empty" animation state
         playerManager.animationController.animator.Play("Empty");
     }
 }

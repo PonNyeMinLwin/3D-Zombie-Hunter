@@ -26,13 +26,13 @@ public class CutsceneUIManager : MonoBehaviour
         fadeInScreen.SetActive(false);
 
         yield return new WaitForSeconds(2f);
-        textBox.GetComponent<TextMeshProUGUI>().text = "The world changed when the zombies came.";
+        textBox.GetComponent<TextMeshProUGUI>().text = "On this clear, starless night...";
 
         yield return new WaitForSeconds(5f);
         textBox.GetComponent<TextMeshProUGUI>().text = "";
 
         yield return new WaitForSeconds(1f);
-        textBox.GetComponent<TextMeshProUGUI>().text = "Houses burned. Cities collapsed. Humanity dwindled";
+        textBox.GetComponent<TextMeshProUGUI>().text = "The zombies arrived, violent and starving.";
 
         yield return new WaitForSeconds(5f);
         textBox.GetComponent<TextMeshProUGUI>().text = "";
@@ -50,18 +50,57 @@ public class CutsceneUIManager : MonoBehaviour
         textBox.GetComponent<TextMeshProUGUI>().text = "";
 
         yield return new WaitForSeconds(1f);
-        textBox.GetComponent<TextMeshProUGUI>().text = "But, I will not cower, nor will I waver";
+        textBox.GetComponent<TextMeshProUGUI>().text = "I must get to the house as quickly as possible.";
 
         yield return new WaitForSeconds(5f);
         textBox.GetComponent<TextMeshProUGUI>().text = "";
 
         yield return new WaitForSeconds(1f);
-        textBox.GetComponent<TextMeshProUGUI>().text = "For I am Joe!";
+        textBox.GetComponent<TextMeshProUGUI>().text = "My wife. My kids. I need to go find them!";
 
         yield return new WaitForSeconds(5f);
         textBox.GetComponent<TextMeshProUGUI>().text = "";
 
         yield return new WaitForSeconds(1f);
-        textBox.GetComponent<TextMeshProUGUI>().text = "Joe: The Zombie Hunter!";
+        textBox.GetComponent<TextMeshProUGUI>().text = "I swear on my name Joe, I will find them!";
+
+        yield return new WaitForSeconds(5f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "";
+
+        yield return new WaitForSeconds(1f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "I'll kill every zombie on the planet if that helps me find them.";
+
+        yield return new WaitForSeconds(5f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "";
+
+        yield return new WaitForSeconds(1f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "Where could they be!?";
+
+        yield return new WaitForSeconds(7f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "";
+
+        yield return new WaitForSeconds(1f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "The house looks empty but the lights are on.";
+
+        yield return new WaitForSeconds(5f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "";
+
+        yield return new WaitForSeconds(1f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "It's completely trashed! Was it zombies?";
+
+        yield return new WaitForSeconds(5f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "";
+
+        yield return new WaitForSeconds(1f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "But no bodies. Or blood.";
+
+        yield return new WaitForSeconds(20f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "";
+
+        yield return new WaitForSeconds(1f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "My wife's chair! They must've been taken!";
+
+        yield return new WaitForSeconds(10f);
+        textBox.GetComponent<TextMeshProUGUI>().text = "";
     }
 }

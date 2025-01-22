@@ -16,5 +16,5 @@ MonoBehaviour:
   attackCoolDownTimer: 5
   maxAttackDirection: 20
   minAttackDirection: -20
-  maxAttackDistance: 1
-  minAttackDistance: 2
+  maxAttackDistance: 10
+  minAttackDistance: 5

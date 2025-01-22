@@ -10,7 +10,6 @@ public class AnimationController : MonoBehaviour
     private PlayerManager playerManager;
 
     [Header("Hand IK Constraints")]
-    // According to the "Animations Rigging" package documentation 
     // These constraints allow the character model to properly hold the pistol 
     public TwoBoneIKConstraint rightHandIK;
     public TwoBoneIKConstraint leftHandIK;

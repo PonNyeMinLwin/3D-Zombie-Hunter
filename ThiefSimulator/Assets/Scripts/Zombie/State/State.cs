@@ -6,7 +6,6 @@ public class State : MonoBehaviour
 {
     // This is the base class for all future states
     public virtual State StateSwitchCheck(ZombieController zombieController) {
-        Debug.Log("Running State");
         return this;
     }
 }

@@ -81,9 +81,7 @@ public class AttackState : State
             hasPerformedAttack = true;
             zombieController.attackCoolDown = currentAttack.attackCoolDownTimer;
             zombieController.zombieAnimationManager.PlayAttackAnimation(currentAttack.attackAnimation);
-        } else {
-            Debug.LogWarning("Zombie can attack but no playable attacks available!");
-        }
+        } 
     }
 
     private void ResetBools() {

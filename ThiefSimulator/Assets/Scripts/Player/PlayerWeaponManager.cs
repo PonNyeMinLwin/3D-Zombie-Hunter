@@ -23,9 +23,6 @@ public class PlayerWeaponManager : MonoBehaviour
     }
 
     private void LoadWeaponSlots() {
-        // Back Slots
-        // Hip Slots
-
         playerEquipmentSpawner = GetComponentInChildren<PlayerEquipmentSpawner>();
     }
 

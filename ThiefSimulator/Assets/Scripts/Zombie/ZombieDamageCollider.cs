@@ -23,11 +23,9 @@ public class ZombieDamageCollider : MonoBehaviour
                 if (!player.isPerformingInput) {
                     // Play the Player's "Get Hit" animation 
                     player.animationController.PlayAnimationWithRootMotions("Hit", true);
-                    
                     // Take away 1 health point from player
                     player.playerHealthManager.TakesDamageFromSwipe();
-                    
-                    // Hit SFX plays   
+                    // Hit SFX plays
                 }
             }
         }

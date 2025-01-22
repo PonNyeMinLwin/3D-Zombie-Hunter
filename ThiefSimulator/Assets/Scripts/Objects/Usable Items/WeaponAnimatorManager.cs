@@ -21,6 +21,9 @@ public class WeaponAnimatorManager : MonoBehaviour
     [Header("Weapon Bullet Stats")]
     public float bulletRange = 300f;
 
+    [Header("Audio Source for Weapon Sounds")]
+    public AudioSource weaponAudioSource; 
+
     private void Awake() {
         weaponAnimator = GetComponentInChildren<Animator>();
         player = GetComponentInParent<PlayerManager>();
@@ -37,6 +40,12 @@ public class WeaponAnimatorManager : MonoBehaviour
         
         barrelSmoke.transform.parent = null;
         bullet.transform.parent = null;
+
+        // Play weapon fire sound
+        if (player.playerWeaponManager.weapon.weaponShotAudio != null && weaponAudioSource != null) {
+            weaponAudioSource.PlayOneShot(player.playerWeaponManager.weapon.weaponShotAudio);
+        } 
+
         // Actually shoots at intended target using Raycast
         RaycastHit hit;
 
@@ -56,7 +65,6 @@ public class WeaponAnimatorManager : MonoBehaviour
                     zombie.DamageZombieNormalHitbox(player.playerWeaponManager.weapon.damage);
                 }
             }
-
         }
     }
 }
