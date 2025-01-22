@@ -1,2 +1,2 @@
-# House-Robber-Simulator
-A house robber game - similar to Thief 
+# 3D-Zombie-Hunter
+A fast-paced, roguelite, third-person, mob shooter game. 
